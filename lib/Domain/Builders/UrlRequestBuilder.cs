@@ -10,11 +10,13 @@ using Gotenberg.Sharp.API.Client.Extensions;
 
 using JetBrains.Annotations;
 
+using KeyValuePair = Gotenberg.Sharp.API.Client.Infrastructure.MultiTargetHelpers.KeyValuePair;
+
 namespace Gotenberg.Sharp.API.Client.Domain.Builders
 {
     public class UrlRequestBuilder : BaseBuilder<UrlRequest>
     {
-        readonly List<Task> _asyncTasks = new List<Task>();
+        readonly List<Task> _asyncTasks = new();
 
         protected sealed override UrlRequest Request { get; set; }
 
@@ -92,7 +94,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
             action(new ConfigBuilder(this.Request));
             return this;
         }
-
 
         [PublicAPI]
         public UrlRequest Build()

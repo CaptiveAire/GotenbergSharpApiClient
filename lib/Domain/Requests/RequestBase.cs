@@ -15,7 +15,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests
 
         public AssetDictionary Assets { get; set; }
 
-        public CustomHttpHeaders CustomHeaders { get; } = new CustomHttpHeaders();
+        public CustomHttpHeaders CustomHeaders { get; } = new();
 
         public abstract IEnumerable<HttpContent> ToHttpContent();
     }

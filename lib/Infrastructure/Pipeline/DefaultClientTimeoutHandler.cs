@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,19 +7,16 @@ using Gotenberg.Sharp.API.Client.Extensions;
 
 using JetBrains.Annotations;
 
-
 namespace Gotenberg.Sharp.API.Client.Infrastructure.Pipeline
 {
     [UsedImplicitly]
-    [SuppressMessage("ReSharper", "CA2000")]
-    // ReSharper disable once HollowTypeName
-    public sealed class TimeoutHandler : DelegatingHandler
+    public sealed class DefaultClientTimeoutHandler : DelegatingHandler
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TimeoutHandler"/> class.
+        /// Initializes a new instance of the <see cref="DefaultClientTimeoutHandler"/> class.
         /// </summary>
         /// <param name="innerHandler">The inner handler which is responsible for processing the HTTP response messages.</param>
-        public TimeoutHandler(HttpMessageHandler innerHandler = null)
+        public DefaultClientTimeoutHandler(HttpMessageHandler innerHandler = null)
             : base(innerHandler ?? new HttpClientHandler())
         {
         }

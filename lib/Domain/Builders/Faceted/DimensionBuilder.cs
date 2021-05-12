@@ -16,7 +16,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders.Faceted
             Request.Dimensions ??= new Dimensions();
         }
 
-
         [PublicAPI]
         public DimensionBuilder SetMargins(Margins margins)
         {
@@ -47,10 +46,12 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders.Faceted
         [PublicAPI]
         public DimensionBuilder SetScale(double scale)
         {
-            // ReSharper disable once ComplexConditionExpression
-            if (scale < 0.1 || scale > 2.0)
+            if (scale is < 0.1 or > 2.0)
+            {
                 throw new ArgumentOutOfRangeException(nameof(scale),
                     "Invalid scale.  Valid range is from 0.1 to 2.0 (1% through 200%)");
+            }
+
             this.Request.Dimensions.Scale = scale;
 
             return this;

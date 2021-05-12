@@ -10,6 +10,9 @@ using JetBrains.Annotations;
 
 namespace Gotenberg.Sharp.API.Client.Domain.Builders
 {
+    ///<summary>
+    ///     Builds requests to merge office documents
+    /// </summary>
     /// <remarks>
     ///     Any non office files sent in are just ignored.
     ///     A nice surprise: Gotenberg/Chrome will merge in all sheets within a multi-sheet excel workbook.
@@ -17,7 +20,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
     /// </remarks>
     public sealed class MergeOfficeBuilder : BaseBuilder<MergeOfficeRequest>
     {
-        readonly List<Task> _asyncTasks = new List<Task>();
+        readonly List<Task> _asyncTasks = new();
 
         public MergeOfficeBuilder() => this.Request = new MergeOfficeRequest();
 
@@ -54,7 +57,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
             if (Request.Count == 0) throw new InvalidOperationException("There are no items to merge");
             return Request;
         }
-
 
         [PublicAPI]
         public async Task<MergeOfficeRequest> BuildAsync()

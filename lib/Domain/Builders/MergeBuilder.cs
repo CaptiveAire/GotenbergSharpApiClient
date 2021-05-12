@@ -12,7 +12,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
 {
     public sealed class MergeBuilder : BaseBuilder<MergeRequest>
     {
-        readonly List<Task> _asyncTasks = new List<Task>();
+        readonly List<Task> _asyncTasks = new();
 
         public MergeBuilder() => this.Request = new MergeRequest();
 
@@ -49,7 +49,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
             if (Request.Count == 0) throw new InvalidOperationException("There are no items to merge");
             return Request;
         }
-
 
         [PublicAPI]
         public async Task<MergeRequest> BuildAsync()

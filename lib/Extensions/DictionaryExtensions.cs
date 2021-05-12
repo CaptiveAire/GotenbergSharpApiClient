@@ -5,10 +5,15 @@ using System.Linq;
 
 using Gotenberg.Sharp.API.Client.Domain.Requests.Facets;
 
+using KeyValuePair = Gotenberg.Sharp.API.Client.Infrastructure.MultiTargetHelpers.KeyValuePair;
+
 namespace Gotenberg.Sharp.API.Client.Extensions
 {
     public static class DictionaryExtensions
     {
+        ///<summary>
+        /// Dictionary Extensions
+        /// </summary>
         /// <remarks>
         /// Source is here: https://github.com/thecodingmachine/gotenberg/blob/master/internal/app/xhttp/handler.go#L193
         /// </remarks>

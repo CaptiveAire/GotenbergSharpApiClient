@@ -2,6 +2,6 @@
 {
     public interface IResolveContentType
     {
-        string GetContentType(string fileName, string defaultContentType = "application/octet-stream");
+        string GetContentType(string fileName);
     }
 }

@@ -10,12 +10,12 @@ namespace Gotenberg.Sharp.API.Client.Domain.Settings
         public TimeSpan TimeOut { get; set; } = TimeSpan.FromMinutes(3);
 
         [UsedImplicitly]
-        public Uri ServiceUrl { get; set; } = new Uri("http://localhost:3000");
+        public Uri ServiceUrl { get; set; } = new("http://localhost:3000");
 
         [UsedImplicitly]
-        public Uri HealthCheckUrl { get; set; } = new Uri("http://localhost:3000/ping");
+        public Uri HealthCheckUrl { get; set; } = new("http://localhost:3000/ping");
 
         [UsedImplicitly]
-        public RetryOptions RetryPolicy { get; set; } = new RetryOptions();
+        public RetryOptions RetryPolicy { get; set; } = new();
     }
 }

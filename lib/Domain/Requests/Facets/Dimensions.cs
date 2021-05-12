@@ -18,7 +18,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
     /// <remarks>
     ///     Paper size and margins have to be provided in inches. Same for margins.
     ///     See unit info here: https://thecodingmachine.github.io/gotenberg/#html.paper_size_margins_orientation
-    ///     Paper sizes: https://www.prepressure.com/library/paper-size  
+    ///     Paper sizes: https://www.prepressure.com/library/paper-size
     /// </remarks>
     public sealed class Dimensions : IConvertToHttpContent
     {
@@ -60,7 +60,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         [MultiFormHeader(Constants.Gotenberg.FormFieldNames.Dims.MarginTop)]
         public double MarginTop { [UsedImplicitly] get; set; }
 
-
         /// <summary>
         /// Gets or sets the margin bottom.
         /// </summary>
@@ -69,7 +68,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         /// </value>
         [MultiFormHeader(Constants.Gotenberg.FormFieldNames.Dims.MarginBottom)]
         public double MarginBottom { [UsedImplicitly] get; set; }
-
 
         /// <summary>
         /// Gets or sets the margin left.
@@ -80,7 +78,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         [MultiFormHeader(Constants.Gotenberg.FormFieldNames.Dims.MarginLeft)]
         public double MarginLeft { [UsedImplicitly] get; set; }
 
-
         /// <summary>
         /// Gets or sets the margin right.
         /// </summary>
@@ -89,7 +86,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         /// </value>
         [MultiFormHeader(Constants.Gotenberg.FormFieldNames.Dims.MarginRight)]
         public double MarginRight { [UsedImplicitly] get; set; }
-
 
         /// <summary>
         /// Gets or sets a value indicating whether this <see cref="Dimensions"/> is landscape.
@@ -107,7 +103,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         [PublicAPI]
         public static Dimensions ToA4WithNoMargins()
         {
-            return new Dimensions
+            return new()
             {
                 PaperWidth = 8.27,
                 PaperHeight = 11.7
@@ -124,7 +120,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         [PublicAPI]
         public static Dimensions ToChromeDefaults()
         {
-            return new Dimensions
+            return new()
             {
                 PaperWidth = 8.27,
                 PaperHeight = 11.7,
@@ -141,7 +137,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
         /// <returns></returns>
         public static Dimensions ToDeliverableDefault()
         {
-            return new Dimensions
+            return new()
             {
                 PaperWidth = 8.26,
                 PaperHeight = 11.69,

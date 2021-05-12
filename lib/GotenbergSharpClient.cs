@@ -11,8 +11,6 @@ using Gotenberg.Sharp.API.Client.Infrastructure;
 
 using JetBrains.Annotations;
 
-using Microsoft.Net.Http.Headers;
-
 
 namespace Gotenberg.Sharp.API.Client
 {
@@ -20,14 +18,17 @@ namespace Gotenberg.Sharp.API.Client
     /// C# Client for Gotenberg api
     /// </summary>
     /// <remarks>
+    /// <para>
     ///     Gotenberg:
     ///     https://thecodingmachine.github.io/gotenberg/
     ///     https://github.com/thecodingmachine/gotenberg
-    /// 
+    /// </para>
+    /// <para>
     ///     Other clients:
     ///     https://github.com/thecodingmachine/gotenberg-go-client
     ///     https://github.com/thecodingmachine/gotenberg-php-client
     ///     https://github.com/yumauri/gotenberg-js-client
+    /// </para>
     /// </remarks>
     public sealed class GotenbergSharpClient
     {
@@ -59,7 +60,7 @@ namespace Gotenberg.Sharp.API.Client
                 throw new InvalidOperationException($"{nameof(innerClient.BaseAddress)} is null");
             }
 
-            _innerClient.DefaultRequestHeaders.Add(HeaderNames.UserAgent, nameof(GotenbergSharpClient));
+            _innerClient.DefaultRequestHeaders.Add("User-Agent", nameof(GotenbergSharpClient));
             _innerClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue(Constants.HttpContent.MediaTypes.ApplicationPdf));
         }
@@ -107,7 +108,7 @@ namespace Gotenberg.Sharp.API.Client
         /// <param name="cancelToken"></param>
         /// <remarks>
         ///    Office merges fail when LibreOffice (unoconv) is disabled within the container's docker compose file
-        ///    via the DISABLE_UNOCONV: '1' Environment variable. 
+        ///    via the DISABLE_UNOCONV: '1' Environment variable.
         /// </remarks>
         [PublicAPI]
         public Task<Stream> MergeOfficeDocsAsync(MergeOfficeRequest request, CancellationToken cancelToken = default)
@@ -120,7 +121,8 @@ namespace Gotenberg.Sharp.API.Client
             if (!request.IsWebhookRequest)
                 throw new InvalidOperationException("Only call this for webhook configured requests");
 
-            using var response = await SendRequest(request, HttpCompletionOption.ResponseHeadersRead, cancelToken);
+            using var response = await SendRequest(request, HttpCompletionOption.ResponseHeadersRead, cancelToken)
+                .ConfigureAwait(false);
         }
 
         #endregion
@@ -131,7 +133,9 @@ namespace Gotenberg.Sharp.API.Client
         {
             if (request == null) throw new ArgumentNullException(nameof(request));
 
-            var response = await SendRequest(request, HttpCompletionOption.ResponseHeadersRead, cancelToken);
+            var response = await SendRequest(request, HttpCompletionOption.ResponseHeadersRead, cancelToken)
+                .ConfigureAwait(false);
+
             return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
         }
 

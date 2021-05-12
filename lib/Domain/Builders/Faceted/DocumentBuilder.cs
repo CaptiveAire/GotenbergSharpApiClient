@@ -8,6 +8,9 @@ using JetBrains.Annotations;
 
 namespace Gotenberg.Sharp.API.Client.Domain.Builders.Faceted
 {
+    /// <summary>
+    ///  Build's the document's dimensions
+    /// </summary>
     /// <remarks>
     ///     If you don't specify any dimensions the client sets them to Chrome's defaults
     /// </remarks>
@@ -27,7 +30,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders.Faceted
             this.Request.ContainsMarkdown = containsMarkdown;
             return this;
         }
-
 
         [PublicAPI]
         public DocumentBuilder SetBody(ContentItem body)

@@ -12,7 +12,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
 {
     public class HtmlRequestBuilder : BaseBuilder<HtmlRequest>
     {
-        readonly List<Task> _asyncTasks = new List<Task>();
+        readonly List<Task> _asyncTasks = new();
 
         protected sealed override HtmlRequest Request { get; set; }
 
@@ -72,7 +72,6 @@ namespace Gotenberg.Sharp.API.Client.Domain.Builders
             action(new ConfigBuilder(this.Request));
             return this;
         }
-
 
         [PublicAPI]
         public HtmlRequest Build()
