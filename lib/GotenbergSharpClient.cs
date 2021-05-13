@@ -136,7 +136,11 @@ namespace Gotenberg.Sharp.API.Client
             var response = await SendRequest(request, HttpCompletionOption.ResponseHeadersRead, cancelToken)
                 .ConfigureAwait(false);
 
-            return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+            #if NET5_0_OR_GREATER
+                return await response.Content.ReadAsStreamAsync(cancelToken);
+            #else
+                return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+            #endif
         }
 
         async Task<HttpResponseMessage> SendRequest(IApiRequest request, HttpCompletionOption option,

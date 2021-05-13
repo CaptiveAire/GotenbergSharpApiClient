@@ -118,7 +118,7 @@ namespace Gotenberg.Sharp.API.Client.Domain.Requests.Facets
 
         static StringContent CreateItem<T>(T value, string fieldName)
         {
-            var item = new StringContent(value.ToString());
+            var item = new StringContent(value.ToString()!);
             item.Headers.ContentDisposition =
                 new ContentDispositionHeaderValue(Constants.HttpContent.Disposition.Types.FormData)
                     { Name = fieldName };
