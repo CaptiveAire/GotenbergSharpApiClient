@@ -67,7 +67,7 @@ static string GetBody()
 				</style>
 				<head><meta charset=""utf-8""><title>Thanks to TheCodingMachine</title></head>  
 				<body>
-					<h1>Hello world</h1>
+					<h1>Hello World</h1>
 					<div class=""photo-container"">
 						<figure>
 						    <img src=""ear-on-beach.jpg"">
